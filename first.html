@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Random Selector</title>
+  </head>
+  <body>
+    <div id="parent-container">
+      <div id="child-container">
+        <h2>Number of data: <span id="count"></span></h2>
+        <button onclick="searchUser()" id="button">Show Random Data</button
+        ><br />
+        <div id="screen"><h1 id="data">....</h1></div>
+        <a href="second.html">Added List</a>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+  let datalist = [
+    { name: "Avinash", age: 23 },
+    { name: "Abhishek", age: 25 },
+    { name: "Manish", age: 26 },
+    { name: "Nishant", age: 27 },
+    { name: "Ravi", age: 28 },
+    { name: "Sudhanshu", age: 21 },
+    { name: "Deepshika", age: 20 },
+    { name: "Sanskriti", age: 18 },
+    { name: "Aghaz", age: 17 },
+    { name: "Pawan", age: 24 },
+  ];
+  let selectedData = [];
+  document.getElementById("count").innerHTML = datalist.length;
+
+  function searchUser() {
+    let indexvalue = Math.floor(Math.random() * datalist.length);
+    let random = datalist[indexvalue];
+    document.getElementById("data").innerText = random.name;
+    let selectedObj = datalist.splice(indexvalue, 1);
+    selectedData.push(selectedObj);
+    document.getElementById("count").innerHTML = datalist.length;
+
+    localStorage.setItem("data", JSON.stringify(selectedData));
+  }
+</script>
